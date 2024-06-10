@@ -64,6 +64,16 @@ class Telemetry final : public Task<Telemetry, 1024> {
   void PackTxMessage(uint32_t ts, gnss_data_t* gnss, packed_tx_msg_t* tx_payload,
                      estimation_output_t estimation_data) const noexcept;
   void ParseRxMessage(packed_rx_msg_t* rx_payload) noexcept;
+
+  struct [[gnu::packed]] {
+    uint8_t header;
+    uint32_t passcode;
+    uint8_t event;
+    uint8_t enable_pyros;
+    uint32_t dummy1;
+    uint32_t dummy2;
+  } testingMsg{};
+
   bool Parse(uint8_t op_code, const uint8_t* buffer, uint32_t length, gnss_data_t* gnss) noexcept;
   static void SendLinkPhrase() noexcept;
   static void SendSettings(uint8_t command, uint8_t value) noexcept;

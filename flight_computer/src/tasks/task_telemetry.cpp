@@ -213,8 +213,12 @@ void Telemetry::ParseRxMessage(packed_rx_msg_t* rx_payload) noexcept {
 
     PackTxMessage(tick_count, &gnss_data, &tx_payload, estimation_output);
 
+    testingMsg.header = 0x72;
+    testingMsg.enable_pyros = 1;
+    testingMsg.event = 0;
+
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    SendTxPayload(reinterpret_cast<uint8_t*>(&tx_payload), sizeof(packed_tx_msg_t));
+    SendTxPayload(reinterpret_cast<uint8_t*>(&testingMsg), 15));
 
     if ((tick_count - uart_timeout) > 60000) {
       uart_timeout = tick_count;
