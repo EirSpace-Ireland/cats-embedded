@@ -107,9 +107,9 @@ void Telemetry::ParseRxMessage(packed_rx_msg_t* rx_payload) noexcept {
   }
 
   /* Check if the test phrase matches */
-  if (rx_payload->passcode != m_test_phrase_crc) {
-    return;
-  }
+  //if (rx_payload->passcode != m_test_phrase_crc) {
+  //  return;
+  //}
 
   /* Packet Received, reset timeout */
   m_testing_timeout = osKernelGetTickCount();
