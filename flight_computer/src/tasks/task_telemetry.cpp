@@ -218,7 +218,7 @@ void Telemetry::ParseRxMessage(packed_rx_msg_t* rx_payload) noexcept {
     testingMsg.event = 0;
 
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    SendTxPayload(reinterpret_cast<uint8_t*>(&testingMsg), 15));
+    SendTxPayload(reinterpret_cast<uint8_t*>(&testingMsg), 15);
 
     if ((tick_count - uart_timeout) > 60000) {
       uart_timeout = tick_count;
